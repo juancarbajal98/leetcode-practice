@@ -186,3 +186,70 @@ EOD 3/31
 /*
 EOD 4/1
 */
+/*
+4/3
+*/
+
+// problem 10 - #1528 Shuffle String - looked at solution in Discussions
+/**
+ * @param {string} s
+ * @param {number[]} indices
+ * @return {string}
+ */
+ var restoreString = function(s, indices) {
+    //  let output = ''
+    //  for(let i =0; i<s.length; i++){
+    //     output += s[indices.indexOf(i)]
+    //  }
+    //  return output
+
+     // even better solution
+     let output = []
+     for(let i=0;i<s.length; i++){
+         output[indices[i]]= s[i]
+     }
+     return output.join('')
+};
+
+
+// console.log(restoreString('codeleet', [4,5,6,7,0,1,2,3]))
+
+// problem 11 - #1281 Subtract the Product and Sum of Digits of an Integer - looked at solution in Discussions
+/**
+ * @param {number} n
+ * @return {number}
+ */
+ var subtractProductAndSum = function(n) {
+    // let str = n.toString()
+    // let sum = 0
+    // let product = 1
+    // for(let i of str){
+    //     sum += parseInt(i)
+    //     product *= parseInt(i)
+    // }
+    // return product - sum
+
+    // different solution - makes use of reduce
+    const digits = Array.from(String(n), Number)
+    const sum = digits.reduce((a,b) => a+b)
+    const product = digits.reduce((a,b) => a*b)
+    return product-sum
+
+};
+
+// console.log(subtractProductAndSum(234))
+
+// problem 12 - #1313 Decompress Run-length Encoded List
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+ var decompressRLElist = function(nums) {
+    
+};
+
+console.log(decompressRLElist())
+
+/*
+EOD 4/3
+*/
