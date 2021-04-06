@@ -238,18 +238,126 @@ EOD 4/1
 };
 
 // console.log(subtractProductAndSum(234))
+/*
+EOD 4/3
+*/
 
+/*
+4/5
+*/
 // problem 12 - #1313 Decompress Run-length Encoded List
 /**
  * @param {number[]} nums
  * @return {number[]}
  */
  var decompressRLElist = function(nums) {
-    
+     let output = []
+     for(let i =0; i<nums.length; i+=2){
+        output = output.concat(Array(nums[i]).fill(nums[i+1]))
+     }
+
+     // one liner
+     // return nums.reduce((acc, cur, i, arr) =>i % 2 ? [...acc, ...Array(arr[i - 1]).fill(cur)] : acc,[]);
 };
 
-console.log(decompressRLElist())
+// console.log(decompressRLElist([1,2,3,4]))
 
-/*
-EOD 4/3
+// problem 13 - #1678 Goal Parser Interpretation
+/**
+ * @param {string} command
+ * @return {string}
+ */
+ var interpret = function(command) {
+    command = command.replace(/\(\)/g,"o")
+    command = command.replace(/\(al\)/g,"al")
+    return command
+};
+
+// console.log(interpret("G()()()()(al)"))
+
+// problem 14 - #1773 Count Items Matching a Rule
+/**
+ * @param {string[][]} items
+ * @param {string} ruleKey
+ * @param {string} ruleValue
+ * @return {number}
+ */
+ var countMatches = function(items, ruleKey, ruleValue) {
+    let output = 0
+    for(let i = 0;i<items.length;i++){
+        if(items[i][['type','color','name'].indexOf(ruleKey)] == ruleValue){ output++}
+    }
+    return output
+};
+
+// console.log(countMatches(
+//     [["phone","blue","pixel"],["computer","silver","lenovo"],["phone","gold","iphone"]],
+//     "color",
+//     "silver"
+// ))
+
+// console.log(countMatches(
+//     [["phone","blue","pixel"],["computer","silver","phone"],["phone","gold","iphone"]],
+//     "type",
+//     "phone"
+// ))
+
+// problem 15 - #1720 Decode XORed Array
+/**
+ * @param {number[]} encoded
+ * @param {number} first
+ * @return {number[]}
+ */
+ var decode = function(encoded, first) {
+    let output = [first]
+    for(let i=0;i<encoded.length;i++){
+        output.push(Math.abs(encoded[i]-output[i]))
+    }
+    return output
+};
+
+// console.log(decode([6,2,7,3], 4)) - confused about question
+
+// problem 16 - #1221 Split a String in Balanced Strings
+/**
+ * @param {string} s
+ * @return {number}
+ */
+ var balancedStringSplit = function(s) {
+    let total = 0
+    let r = 0 
+    let c = 0
+    let r_was_last = false
+    for(let i=0;i<s.length;i++){
+        if(s[i]=="R"){
+            r++
+            r_was_last = true    
+        }
+        else if (s[i]=="L") {
+            c++
+            r_was_last = false
+        }
+        if(1 !=s.length-1){
+            if(c == r && r_was_last && s[i+1]=='L'){
+                total++
+                c=0
+                r=0
+            }
+            else if (c == r && !r_was_last && s[i+1]=='R'){
+                total++
+                c=0
+                r=0
+            }
+        }
+        else {
+            if(c == r) {total++}
+        }
+    }
+    return total
+};
+
+// console.log(balancedStringSplit('RLRRLLRLRL'))
+
+/* 
+EOD 4/5
 */
